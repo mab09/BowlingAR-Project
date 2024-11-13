@@ -1,0 +1,12 @@
+# ninja log v5
+108	827	7532350816188895	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	31530fe38a83339e
+828	1132	7532350819084678	C:/Users/mirza/Documents/GitHub/BowlingAR-Project/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/v4g4y1y4/obj/arm64-v8a/libswappywrapper.so	fbd985ccea4362ba
+23	4154	7532350849364327	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c54b23cd552718f5
+51	4200	7532350849748700	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	d76045a9ef8d18fd
+97	4226	7532350850077011	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5e17fff88e1c37e7
+72	4239	7532350850173159	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	1510e352aa274fcc
+32	4312	7532350850927048	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	4120c3c0a5ff33a2
+13	4357	7532350851330533	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	81d5eeacf1e34c03
+39	4501	7532350852831285	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c869d33b2e6349c7
+2	4624	7532350854054149	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	62d6ddf49fdd3906
+4624	4767	7532350855536664	C:/Users/mirza/Documents/GitHub/BowlingAR-Project/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/v4g4y1y4/obj/arm64-v8a/libgame.so	58b6f37c70749402
