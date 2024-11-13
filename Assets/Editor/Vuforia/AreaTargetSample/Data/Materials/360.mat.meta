@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 891fd2f9d34514308bfa3a0c79039c24
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206265
+  packageName: Vuforia VFX Library
+  packageVersion: 10.27.3
+  assetPath: Assets/Editor/Vuforia/AreaTargetSample/Data/Materials/360.mat
+  uploadId: 697324

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: edc663a883cbd4866a361e91214cb8a6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206265
+  packageName: Vuforia VFX Library
+  packageVersion: 10.27.3
+  assetPath: Assets/VFXCore/Prefabs/VisualEffects/VFX_Volume_texture.prefab
+  uploadId: 697324

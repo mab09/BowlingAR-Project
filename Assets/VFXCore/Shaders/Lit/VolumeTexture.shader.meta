@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 34bab9507ea0f447da2f931e0d2c8f2a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206265
+  packageName: Vuforia VFX Library
+  packageVersion: 10.27.3
+  assetPath: Assets/VFXCore/Shaders/Lit/VolumeTexture.shader
+  uploadId: 697324

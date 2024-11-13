@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5b1efcbf9969c49c3b99cde8f21ef46f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206265
+  packageName: Vuforia VFX Library
+  packageVersion: 10.27.3
+  assetPath: Assets/Editor/Vuforia/AreaTargetSample/Data/Materials/216.mat
+  uploadId: 697324

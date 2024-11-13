@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cfd0a3de3f744061b5f7ab702a836860
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206265
+  packageName: Vuforia VFX Library
+  packageVersion: 10.27.3
+  assetPath: Assets/Editor/Vuforia/VSY_Pump_360/authoringinfo.xml
+  uploadId: 697324

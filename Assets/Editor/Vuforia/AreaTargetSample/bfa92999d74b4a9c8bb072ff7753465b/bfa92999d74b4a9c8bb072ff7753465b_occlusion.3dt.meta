@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b5a60fdcec3b4629b10539e651ca8859
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 206265
+  packageName: Vuforia VFX Library
+  packageVersion: 10.27.3
+  assetPath: Assets/Editor/Vuforia/AreaTargetSample/bfa92999d74b4a9c8bb072ff7753465b/bfa92999d74b4a9c8bb072ff7753465b_occlusion.3dt
+  uploadId: 697324
