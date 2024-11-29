@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "GameState", menuName = "ScriptableObjects/CreateGameStateAsset")]
 public class GameState : ScriptableObject
@@ -24,8 +25,6 @@ public class GameState : ScriptableObject
         set => _currentGameState = value;
     }
 
-    // GameState.cs
-
     [SerializeField] private int _score = 0;
     [SerializeField] private int _remainingBalls = 0;
     [SerializeField] private int _currentTurn = 0;
@@ -33,11 +32,16 @@ public class GameState : ScriptableObject
     [SerializeField] private int _strikeCounter = 0;
     [SerializeField] private int _strikeExtraPoints = 10;
     [SerializeField] private float _throwPowerMultiplier = 0.05f;
+    [HideInInspector] public UnityEvent<int> OnScoreChanged;
 
     public int Score
     {
         get => _score;
-        set => _score = value;
+        set
+        {
+            _score = value;
+            OnScoreChanged?.Invoke(_score);
+        }
     }
     public int RemainingBalls
     {
