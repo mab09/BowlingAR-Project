@@ -4,10 +4,19 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Transform _arCamera;
     [SerializeField] private GameObject _ballPrefab;
+    [SerializeField] private GameState _gameState;
 
     private GameObject _currentBall;
     private Vector2 _touchInitialPosition, _touchFinalPosition;
     private float _ySwipeDelta;
+
+    private void Awake()
+    {
+        // Resets game state to the needed values for a new game
+        _gameState.ResetState();
+
+        _gameState.CurrentGameState = GameState.GameStateEnum.PlacingPinDeckAndLane;
+    }
 
     private void BallInitialSetup()
     {
