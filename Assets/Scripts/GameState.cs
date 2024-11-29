@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "GameState", menuName = "ScriptableObjects/CreateGameStateAsset")]
 public class GameState : ScriptableObject
@@ -79,6 +80,11 @@ public class GameState : ScriptableObject
         _currentTurn = 1;
         _score = 0;
         _remainingBalls = MaxTurns;
+    }
+
+    public void LoadNewScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
 }
