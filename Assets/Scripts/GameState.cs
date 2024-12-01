@@ -23,7 +23,38 @@ public class GameState : ScriptableObject
     public GameStateEnum CurrentGameState
     {
         get => _currentGameState;
-        set => _currentGameState = value;
+        set
+        {
+            _currentGameState = value;
+
+            switch (value)
+            {
+                case GameStateEnum.SetupBalls:
+                    OnEnterBallSetup?.Invoke();
+                    break;
+                case GameStateEnum.ReadyToThrow:
+                    OnReadyToThrow?.Invoke();
+                    break;
+                case GameStateEnum.BallInPlay:
+                    OnBallInPlay?.Invoke();
+                    break;
+                case GameStateEnum.BallPlayEnd:
+                    OnBallPlayEnd?.Invoke();
+                    break;
+                case GameStateEnum.StrikeAchieved:
+                    OnStrikeAchieved?.Invoke();
+                    break;
+                case GameStateEnum.TurnEnd:
+                    OnTurnEnd?.Invoke();
+                    break;
+                case GameStateEnum.ResettingDeck:
+                    OnResettingDeck?.Invoke();
+                    break;
+                case GameStateEnum.GameEnded:
+                    OnGameEnded?.Invoke();
+                    break;
+            }
+        }
     }
 
     [SerializeField] private int _score = 0;
@@ -34,6 +65,14 @@ public class GameState : ScriptableObject
     [SerializeField] private int _strikeExtraPoints = 10;
     [SerializeField] private float _throwPowerMultiplier = 0.05f;
     [HideInInspector] public UnityEvent<int> OnScoreChanged;
+    [HideInInspector] public UnityEvent OnEnterBallSetup;
+    [HideInInspector] public UnityEvent OnReadyToThrow;
+    [HideInInspector] public UnityEvent OnBallInPlay;
+    [HideInInspector] public UnityEvent OnBallPlayEnd;
+    [HideInInspector] public UnityEvent OnStrikeAchieved;
+    [HideInInspector] public UnityEvent OnTurnEnd;
+    [HideInInspector] public UnityEvent OnResettingDeck;
+    [HideInInspector] public UnityEvent OnGameEnded;
 
     public int Score
     {

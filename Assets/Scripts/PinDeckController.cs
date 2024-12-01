@@ -9,9 +9,23 @@ public class PinDeckController : MonoBehaviour
     [SerializeField] private GameObject _bowlingLanePrefab;
     [SerializeField] private GameObject _pinDeckPrefab;
     [SerializeField] private PlaneFinderBehaviour _planeFinder;
+    [SerializeField] private GameState _gameState;
+
     private GameObject _pinDeckClone;
     private Transform _pinDeckSpawnPoint;
     private bool _pinDeckCreated = false;
+
+    void OnEnable()
+    {
+        _gameState.OnBallPlayEnd.AddListener(StartBallPlayEnded);
+        _gameState.OnResettingDeck.AddListener(StartPlaceNewDeckOnLane);
+    }
+
+    void OnDisable()
+    {
+        _gameState.OnBallPlayEnd.RemoveListener(StartBallPlayEnded);
+        _gameState.OnResettingDeck.RemoveListener(StartPlaceNewDeckOnLane);
+    }
 
     private void Awake()
     {
@@ -23,6 +37,23 @@ public class PinDeckController : MonoBehaviour
             _arCamera.transform.eulerAngles.y + 180,
             _arCamera.transform.eulerAngles.z
         );
+#endif
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // For testing purposes, start and create pin deck on mouse click
+#if UNITY_EDITOR
+        if (!_pinDeckCreated)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _pinDeckCreated = true;
+                CreatePinDeck();
+                Debug.Log("Mouse Left Button Clicked, CreatePinDeck()");
+            }
+        }
 #endif
     }
 
@@ -61,22 +92,35 @@ public class PinDeckController : MonoBehaviour
         _pinDeckClone = Instantiate(_pinDeckPrefab, _pinDeckSpawnPoint.position, _pinDeckSpawnPoint.rotation);
 
         yield return new WaitForSeconds(1);
+
+        _gameState.CurrentGameState = GameState.GameStateEnum.SetupBalls;
     }
 
-    // Update is called once per frame
-    void Update()
+    void StartBallPlayEnded()
     {
-        // For testing purposes, start and create pin deck on mouse click
-#if UNITY_EDITOR
-        if (!_pinDeckCreated)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _pinDeckCreated = true;
-                CreatePinDeck();
-                Debug.Log("Mouse Left Button Clicked, CreatePinDeck()");
-            }
-        }
-#endif
+        Debug.Log("BallPlayEnded()");
+
+        StartCoroutine(BallPlayEnded());
+    }
+
+    IEnumerator BallPlayEnded()
+    {
+        yield return new WaitForSeconds(2);
+
+        _gameState.CurrentGameState = GameState.GameStateEnum.TurnEnd;
+
+    }
+    void StartPlaceNewDeckOnLane()
+    {
+        Debug.Log("PLACE NEW DECK ON LANE");
+
+        StartCoroutine(PlaceNewDeckOnLane());
+    }
+
+    IEnumerator PlaceNewDeckOnLane()
+    {
+        yield return new WaitForSeconds(2);
+
+        _gameState.CurrentGameState = GameState.GameStateEnum.ReadyToThrow;
     }
 }

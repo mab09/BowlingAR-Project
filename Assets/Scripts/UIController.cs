@@ -16,6 +16,56 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private float _turnWaitTime = 3;
 
+    private bool _throwInstructionShowed = false;
+
+    private void OnEnable()
+    {
+        _gameState.OnEnterBallSetup.AddListener(HidePlaceInDeckPanel);
+
+        _gameState.OnScoreChanged.AddListener(UpdateScoreUI);
+        _gameState.OnBallInPlay.AddListener(UpdateAmountOfBallsUI);
+        _gameState.OnTurnEnd.AddListener(ShowNextTurnUI);
+    }
+
+    private void OnDisable()
+    {
+        _gameState.OnEnterBallSetup.RemoveListener(HidePlaceInDeckPanel);
+
+        _gameState.OnScoreChanged.RemoveListener(UpdateScoreUI);
+        _gameState.OnBallInPlay.RemoveListener(UpdateAmountOfBallsUI);
+        _gameState.OnTurnEnd.RemoveListener(ShowNextTurnUI);
+    }
+
+    void HidePlaceInDeckPanel()
+    {
+        // hide place pin panel and show control instructions
+        _placePinDeckPanel.SetActive(false);
+
+        ShowControls();
+    }
+
+    void ShowControls()
+    {
+        if (_throwInstructionShowed) return;
+
+        _throwInstructionShowed = true;
+        _controlsPanel_1.SetActive(true);
+
+        Invoke("HideControls_1", 3);
+    }
+
+    void HideControls_1()
+    {
+        _controlsPanel_1.SetActive(false);
+        _controlsPanel_2.SetActive(true);
+
+        Invoke("HideControls_2", 3);
+    }
+
+    void HideControls_2()
+    {
+        _controlsPanel_2.SetActive(false);
+    }
 
     void UpdateScoreUI(int newScore)
     {
@@ -39,14 +89,7 @@ public class UIController : MonoBehaviour
         StartCoroutine(ShowNextTurnRoutine());
     }
 
-    public void ShowGameOverScreen()
-    {
-        _strikePanel.SetActive(false);
-
-        _gameOverScreen.SetActive(true);
-    }
-
-    private IEnumerator ShowNextTurnRoutine()
+    IEnumerator ShowNextTurnRoutine()
     {
         Debug.Log("SHOW NEXT TURN");
 
@@ -67,5 +110,22 @@ public class UIController : MonoBehaviour
         {
             _gameState.CurrentGameState = GameState.GameStateEnum.GameEnded;
         }
+    }
+
+    public void ShowGameOverScreen()
+    {
+        _strikePanel.SetActive(false);
+
+        _gameOverScreen.SetActive(true);
+    }
+
+    void Start()
+    {
+        // show place pin panel
+        _placePinDeckPanel.SetActive(true);
+
+        // update HUD score and balls
+        UpdateAmountOfBallsUI();
+        UpdateScoreUI(0);
     }
 }

@@ -3380,7 +3380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1654862686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3550,6 +3550,7 @@ MonoBehaviour:
   _bowlingLanePrefab: {fileID: 7062955505298144321, guid: bd927f9de564a324db5d06941b264ba2, type: 3}
   _pinDeckPrefab: {fileID: 4379776857419533798, guid: 5be0cac8c6645e24ea3afe4dd1214f07, type: 3}
   _planeFinder: {fileID: 1558559867}
+  _gameState: {fileID: 11400000, guid: 8c70a11d107600a46a9a7616873f8bed, type: 2}
 --- !u!4 &1803203894
 Transform:
   m_ObjectHideFlags: 0
