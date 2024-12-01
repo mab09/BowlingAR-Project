@@ -25,6 +25,7 @@ public class UIController : MonoBehaviour
         _gameState.OnScoreChanged.AddListener(UpdateScoreUI);
         _gameState.OnBallInPlay.AddListener(UpdateAmountOfBallsUI);
         _gameState.OnTurnEnd.AddListener(ShowNextTurnUI);
+        _gameState.OnGameEnded.AddListener(ShowGameOverScreen);
     }
 
     private void OnDisable()
@@ -34,6 +35,7 @@ public class UIController : MonoBehaviour
         _gameState.OnScoreChanged.RemoveListener(UpdateScoreUI);
         _gameState.OnBallInPlay.RemoveListener(UpdateAmountOfBallsUI);
         _gameState.OnTurnEnd.RemoveListener(ShowNextTurnUI);
+        _gameState.OnGameEnded.RemoveListener(ShowGameOverScreen);
     }
 
     void HidePlaceInDeckPanel()
