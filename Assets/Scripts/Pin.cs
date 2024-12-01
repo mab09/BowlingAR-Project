@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Pin : MonoBehaviour
@@ -39,5 +40,68 @@ public class Pin : MonoBehaviour
         // stop movements
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+    }
+
+    public void StartLowerPin()
+    {
+        EnableCollision(false);
+
+        StartCoroutine(LowerPin());
+    }
+
+    private IEnumerator LowerPin()
+    {
+        Debug.Log("Start LowerPin");
+
+        // lower pins by subtracting the raised position to its local position
+        yield return StartCoroutine(PinTween(transform.localPosition, transform.localPosition - _raisedPosition, _moveSpeed));
+
+        Debug.Log("End LowerPin");
+
+        EnableCollision(true);
+    }
+
+    public void StartRaisePin()
+    {
+        EnableCollision(false);
+
+        StartCoroutine(RaisePin());
+    }
+
+    private IEnumerator RaisePin()
+    {
+        Debug.Log("Start RaisePin");
+
+        // raise the pins by adding the raised position to its local position
+        yield return StartCoroutine(PinTween(transform.localPosition, transform.localPosition + _raisedPosition, _moveSpeed));
+
+        Debug.Log("End RaisePin");
+    }
+
+    // tween function to animate local position
+    private IEnumerator PinTween(Vector3 from, Vector3 to, float time)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.localPosition = Vector3.Lerp(from, to, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private void EnableCollision(bool value)
+    {
+        _rb.useGravity = value;
+        _collider.enabled = value;
+    }
+    public bool IsPinDown()
+    {
+        float zAngle = transform.eulerAngles.z;
+        Debug.Log($"name: {name} zAngle: {zAngle}");
+
+        // determine if model is down by its z angle
+        return (transform.eulerAngles.z > 5 && transform.eulerAngles.z < 359);
     }
 }

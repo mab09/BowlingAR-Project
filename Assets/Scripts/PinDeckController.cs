@@ -15,6 +15,8 @@ public class PinDeckController : MonoBehaviour
     private Transform _pinDeckSpawnPoint;
     private bool _pinDeckCreated = false;
 
+    private Pin[] _pins;
+
     void OnEnable()
     {
         _gameState.OnBallPlayEnd.AddListener(StartBallPlayEnded);
@@ -94,6 +96,12 @@ public class PinDeckController : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         _gameState.CurrentGameState = GameState.GameStateEnum.SetupBalls;
+
+        _pins = _pinDeckClone.transform.GetComponentsInChildren<Pin>();
+
+        LowerPinDeck();
+
+        yield return new WaitForSeconds(1);
     }
 
     void StartBallPlayEnded()
@@ -105,6 +113,29 @@ public class PinDeckController : MonoBehaviour
 
     IEnumerator BallPlayEnded()
     {
+        foreach (Pin pin in _pins)
+        {
+            if (pin.IsPinDown())
+            {
+                _gameState.Score++;
+
+                _gameState.StrikeCounter++;
+            }
+        }
+
+        if (_gameState.StrikeCounter == 10)
+        {
+            _gameState.CurrentGameState = GameState.GameStateEnum.StrikeAchieved;
+
+            _gameState.Score += _gameState.StrikeExtraPoints;
+
+            yield return new WaitForSeconds(2);
+        }
+
+        _gameState.StrikeCounter = 0;
+
+        RaisePinDeck();
+
         yield return new WaitForSeconds(2);
 
         _gameState.CurrentGameState = GameState.GameStateEnum.TurnEnd;
@@ -119,8 +150,30 @@ public class PinDeckController : MonoBehaviour
 
     IEnumerator PlaceNewDeckOnLane()
     {
+        foreach (Pin pin in _pins)
+        {
+            pin.Reset();
+
+            pin.StartLowerPin();
+        }
+
         yield return new WaitForSeconds(2);
 
         _gameState.CurrentGameState = GameState.GameStateEnum.ReadyToThrow;
     }
+    void LowerPinDeck()
+    {
+        foreach (Pin pin in _pins)
+        {
+            pin.StartLowerPin();
+        }
+    }
+    void RaisePinDeck()
+    {
+        foreach (Pin pin in _pins)
+        {
+            if (!pin.IsPinDown()) pin.StartRaisePin();
+        }
+    }
+
 }
