@@ -104,4 +104,17 @@ public class Pin : MonoBehaviour
         // determine if model is down by its z angle
         return (transform.eulerAngles.z > 5 && transform.eulerAngles.z < 359);
     }
+    public void DisablePin()
+    {
+        gameObject.SetActive(false);
+        //gameObject.GetComponent<Collider>().enabled = false;
+        //gameObject.GetComponent<Renderer>().enabled = false;
+    }
+
+    public void EnablePin()
+    {
+        gameObject.SetActive(true);
+        //gameObject.GetComponent<Renderer>().enabled = true;
+        //gameObject.GetComponent<Collider>().enabled = true;
+    }
 }

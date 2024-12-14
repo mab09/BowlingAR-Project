@@ -14,6 +14,7 @@ public class PinDeckController : MonoBehaviour
     private GameObject _pinDeckClone;
     private Transform _pinDeckSpawnPoint;
     private bool _pinDeckCreated = false;
+    private int _downedPins = 0;
 
     private Pin[] _pins;
 
@@ -39,23 +40,6 @@ public class PinDeckController : MonoBehaviour
             _arCamera.transform.eulerAngles.y + 180,
             _arCamera.transform.eulerAngles.z
         );
-#endif
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // For testing purposes, start and create pin deck on mouse click
-#if UNITY_EDITOR
-        if (!_pinDeckCreated)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _pinDeckCreated = true;
-                CreatePinDeck();
-                Debug.Log("Mouse Left Button Clicked, CreatePinDeck()");
-            }
-        }
 #endif
     }
 
@@ -120,6 +104,8 @@ public class PinDeckController : MonoBehaviour
                 _gameState.Score++;
 
                 _gameState.StrikeCounter++;
+
+                _downedPins++;
             }
         }
 
@@ -152,10 +138,21 @@ public class PinDeckController : MonoBehaviour
     {
         foreach (Pin pin in _pins)
         {
-            pin.Reset();
+            if (pin.IsPinDown())
+            {
+                pin.DisablePin();
+            }
 
+            if(_downedPins == 10)
+            {
+                pin.EnablePin();
+            }
+            
+            pin.Reset();
             pin.StartLowerPin();
         }
+
+        if(_downedPins >= 10) _downedPins = 0;
 
         yield return new WaitForSeconds(2);
 
@@ -165,14 +162,14 @@ public class PinDeckController : MonoBehaviour
     {
         foreach (Pin pin in _pins)
         {
-            pin.StartLowerPin();
+            if (!pin.IsPinDown()) pin.StartLowerPin();
         }
     }
     void RaisePinDeck()
     {
         foreach (Pin pin in _pins)
         {
-            if (!pin.IsPinDown()) pin.StartRaisePin();
+             pin.StartRaisePin();
         }
     }
 
