@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameState _gameState;
     [SerializeField] private TMP_Text _scoreUI;
     [SerializeField] private TMP_Text _remainingBallsUI;
+    [SerializeField] private TMP_Text _finalScoreUI;
 
     [SerializeField] private GameObject _nextTurnPanel;
     [SerializeField] private GameObject _strikePanel;
@@ -119,6 +120,7 @@ public class UIController : MonoBehaviour
         _strikePanel.SetActive(false);
 
         _gameOverScreen.SetActive(true);
+        _finalScoreUI.text = $"{_gameState.Score}";
     }
 
     void Start()
