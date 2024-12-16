@@ -110,12 +110,6 @@ public class Player : MonoBehaviour
         _gameState.CurrentGameState = GameState.GameStateEnum.BallInPlay;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        BallInitialSetup();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -133,7 +127,7 @@ public class Player : MonoBehaviour
 
             case GameState.GameStateEnum.BallInPlay:
                 // if the ball falls below -20, you have ended the play
-                if (_currentBall.transform.position.y < -20)
+                if (_currentBall.transform.position.y < -50)
                 {
                     Debug.Log("PLAYER PLAY END!");
 
