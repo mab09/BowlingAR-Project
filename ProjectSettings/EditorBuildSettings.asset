@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: c31a0864bec69574e888f0506494aef5
+  - enabled: 1
     path: Assets/Scenes/VuforiaBowling.unity
     guid: 4cccbe187b55a594190511afa935f4cd
   m_configObjects:
