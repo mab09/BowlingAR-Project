@@ -7,6 +7,7 @@ public class Pin : MonoBehaviour
 
     private Rigidbody _rb;
     private MeshCollider _collider;
+    private MeshRenderer _renderer;
 
     private Vector3 _originalPosition;
     private Quaternion _originalRotation;
@@ -14,11 +15,19 @@ public class Pin : MonoBehaviour
     private float _moveSpeed = 1.5f;
     private Vector3 _raisedPosition = new Vector3(0, 0.85f, 0);
 
+    private bool _deadPin = false;          //a bool that marks a pin dead, i.e. already downed and do not have to check IsPinDown()
+    public bool DeadPin
+    {
+        get => _deadPin;
+        set => _deadPin = value;
+    }
+
     private void Awake()
     {
         // store rigidbody and collider refs
         _rb = transform.GetComponent<Rigidbody>();
         _collider = transform.GetComponent<MeshCollider>();
+        _renderer = transform.GetComponent<MeshRenderer>();
 
         // store original position and rotation
         _originalPosition = transform.position;
@@ -58,7 +67,7 @@ public class Pin : MonoBehaviour
 
         Debug.Log("End LowerPin");
 
-        EnableCollision(true);
+        if(!_deadPin) EnableCollision(true);
     }
 
     public void StartRaisePin()
@@ -106,15 +115,13 @@ public class Pin : MonoBehaviour
     }
     public void DisablePin()
     {
-        gameObject.SetActive(false);
-        //gameObject.GetComponent<Collider>().enabled = false;
-        //gameObject.GetComponent<Renderer>().enabled = false;
+        _renderer.enabled = false;
+        _deadPin = true;
     }
 
     public void EnablePin()
     {
-        gameObject.SetActive(true);
-        //gameObject.GetComponent<Renderer>().enabled = true;
-        //gameObject.GetComponent<Collider>().enabled = true;
+        _renderer.enabled = true;
+        _deadPin = false;
     }
 }

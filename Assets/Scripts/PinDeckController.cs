@@ -105,7 +105,7 @@ public class PinDeckController : MonoBehaviour
 
                 _gameState.StrikeCounter++;
 
-                _downedPins++;
+                if(!pin.DeadPin) _downedPins++;     //Increment only with newly downed pins
             }
         }
 
@@ -152,7 +152,7 @@ public class PinDeckController : MonoBehaviour
             pin.StartLowerPin();
         }
 
-        if(_downedPins >= 10) _downedPins = 0;
+        if(_downedPins >= 10) _downedPins = 0;      //If all pins are down reset with new deck
 
         yield return new WaitForSeconds(2);
 
@@ -162,7 +162,7 @@ public class PinDeckController : MonoBehaviour
     {
         foreach (Pin pin in _pins)
         {
-            if (!pin.IsPinDown()) pin.StartLowerPin();
+            if (!pin.DeadPin) pin.StartLowerPin();
         }
     }
     void RaisePinDeck()
