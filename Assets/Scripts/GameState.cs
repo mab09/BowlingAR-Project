@@ -126,4 +126,9 @@ public class GameState : ScriptableObject
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }
