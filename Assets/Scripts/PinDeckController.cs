@@ -160,6 +160,8 @@ public class PinDeckController : MonoBehaviour
     }
     void LowerPinDeck()
     {
+        _pinDeckClone.GetComponent<AudioSource>().Play();
+
         foreach (Pin pin in _pins)
         {
             if (!pin.DeadPin) pin.StartLowerPin();
@@ -171,6 +173,8 @@ public class PinDeckController : MonoBehaviour
         {
              pin.StartRaisePin();
         }
+
+        _pinDeckClone.GetComponent<AudioSource>().Play();
     }
 
 }
