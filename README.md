@@ -1,4 +1,6 @@
 # BowlingAR: An AR Bowling Alley Experience
+<img src="https://github.com/user-attachments/assets/a1b05c0d-577d-4dc9-8bec-8139674c2cc9" width=20% height=20%>
+
 [BowlingAR Demo](https://youtu.be/ygL5PjM235U)
 
 BowlingAR is an AR implementation of a fun and simple Bowling Alley experience, developed as a course project for the Meta AR Developer Certification. This engaging application allows players to spawn a bowling lane in their environment using their phone camera and throw bowling balls to knock out pins using screen swipes.
