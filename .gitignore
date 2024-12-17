@@ -74,3 +74,4 @@ crashlytics-build.properties
 # Big Vuforia File
 /[Aa]ssets/[Ee]ditor/[Mm]igration/*.tgz*
 /[Pp]ackages/*.tgz
+.utmp/Debug/v4g4y1y4/arm64-v8a/configure_fingerprint.bin
