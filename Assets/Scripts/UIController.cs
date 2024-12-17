@@ -104,7 +104,7 @@ public class UIController : MonoBehaviour
         if (_gameState.CurrentTurn <= _gameState.MaxTurns)
         {
             _nextTurnPanel.SetActive(true);
-            _nextTurnPanel.GetComponentInChildren<TMP_Text>().text = $"Turn {_gameState.CurrentTurn}";
+            _nextTurnPanel.GetComponentInChildren<TMP_Text>().text = $"Round {_gameState.CurrentTurn}";
 
             yield return new WaitForSeconds(_turnWaitTime);
 
