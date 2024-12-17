@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
 
             case GameState.GameStateEnum.BallInPlay:
                 // if the ball falls below -20, you have ended the play
-                if (_currentBall.transform.position.y < -50)
+                if (_currentBall.transform.position.y < -20)
                 {
                     Debug.Log("PLAYER PLAY END!");
 
